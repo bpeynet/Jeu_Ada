@@ -1,0 +1,34 @@
+with Ada.Text_IO;
+use Ada.Text_IO;
+
+package body Partie is
+
+   procedure Joue_Partie(E : in out Etat; J : in Joueur) is
+   begin
+      if Est_Nul(E) then
+         Put_Line("Match nul");
+         Affiche_Jeu(E);
+      elsif Est_Gagnant(E,Adversaire(J)) then
+         Put("Victoire de ");
+         if J=Joueur1 then
+            Put_Line(Nom_Joueur2);
+         else
+            Put_Line(Nom_Joueur1);
+         end if;
+         Affiche_Jeu(E);
+      elsif Est_Gagnant(E,J) then
+         Put("Victoire de ");
+         if J=Joueur1 then
+            Put_Line(Nom_Joueur1);
+         else
+            Put_Line(Nom_Joueur2);
+         end if;
+         Affiche_Jeu(E);
+      elsif J=Joueur1 then
+         E:=Etat_Suivant(E,Coup_Joueur1(E));
+      else
+         E:=Etat_Suivant(E,Coup_Joueur2(E));
+      end if;
+      Joue_Partie(E,Adversaire(J));
+   end Joue_Partie;
+end Partie;

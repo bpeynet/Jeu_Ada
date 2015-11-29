@@ -6,4 +6,5 @@ package body Participant is
       else return Joueur1;
       end if;
    end Adversaire;
+
 end Participant;

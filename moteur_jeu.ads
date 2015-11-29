@@ -15,16 +15,16 @@ generic
     -- Affiche a l'ecran le coup passe en parametre
     with procedure Affiche_Coup(C : in Coup);
     -- Implantation d'un package de liste de coups
-    with package Liste_Coups is new Liste_Generique(Coup, Affiche_Coup); 
+    with package Liste_Coups is new Liste_Generique(Coup, Affiche_Coup);
     -- Retourne la liste des coups possibles pour J a partir de l'etat 
     with function Coups_Possibles(E : Etat; J : Joueur) return Liste_Coups.Liste; 
     -- Evaluation statique du jeu du point de vue de l'ordinateur
     with function Eval(E : Etat) return Integer;   
     -- Profondeur de recherche du coup
-    P : Natural;
+    Profondeur : Natural;
     -- Indique le joueur interprete par le moteur
     JoueurMoteur : Joueur;
-    
+    use Liste_Coups;
 package Moteur_Jeu is
     
     -- Choix du prochain coup par l'ordinateur. 
@@ -32,7 +32,7 @@ package Moteur_Jeu is
     -- P : profondeur a laquelle la selection doit s'effetuer
     function Choix_Coup(E : Etat) return Coup;
    
-private 
+private
     -- Evaluation d'un coup a partir d'un etat donne
     -- E : Etat courant
     -- P : profondeur a laquelle cette evaluation doit etre realisee

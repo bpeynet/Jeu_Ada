@@ -21,12 +21,12 @@ generic
     with procedure Affiche_Coup(C : in Coup);
     -- Retourne le prochaine coup joue par le joueur1
     with function Coup_Joueur1(E : Etat) return Coup;
-    -- Retourne le prochaine coup joue par le joueur2   
-    with function Coup_Joueur2(E : Etat) return Coup;   
+    -- Retourne le prochaine coup joue par le joueur2
+    with function Coup_Joueur2(E : Etat) return Coup;
     
 package Partie is
-   
-   
+   --Retourne le nom du joueur J donné en paramètre
+   function ToString(J: Joueur) return String;
     -- Joue une partie. 
     -- E : Etat initial
     -- J : Joueur qui commence

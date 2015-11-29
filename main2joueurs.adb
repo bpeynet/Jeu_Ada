@@ -12,13 +12,13 @@ use Participant;
 
 procedure Main2Joueurs is
    
-   package MyPuissance4 is new Puissance4(3,3,3);
+   package MyPuissance4 is new Puissance4(4,4,3);
    Nom1, Nom2: String(1..20);
    Last1,Last2: Natural;
    begin
    Put("Entrez le nom du joueur 1: ");
    Get_Line(Nom1,Last1);
-   Put("et le nom du joueur 2.");
+   Put("et le nom du joueur 2: ");
    Get_Line(Nom2,Last2);
    
    declare
@@ -41,7 +41,7 @@ procedure Main2Joueurs is
 	begin
    --Put(3,0);
    Put_Line("3x3 - Puissance 4");
-   Put_Line("");New_Line;
+   --Put_Line("");New_Line;
    Put_Line(Nom1(1..Last1) & " : X"); 
    Put_Line(Nom2(1..Last2) & " : O");
    

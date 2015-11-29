@@ -34,7 +34,8 @@ package Liste_Generique is
     -- Verifie s'il reste un element a parcourir
     function A_Suivant(It : Iterateur) return Boolean;
 
-    FinDeListe : exception;
+   FinDeListe : exception;
+   IT_Passe_Au_Suivant: exception;
 
 private 
     type Cellule;

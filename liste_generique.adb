@@ -81,7 +81,11 @@ package body Liste_Generique is
          if It.Adresse/=null then
             return It.Adresse.Val;
          else
-            raise FinDeListe;
+            if A_Suivant(It) then
+               raise IT_Passe_Au_Suivant;
+            else
+               raise FinDeListe;
+            end if;
          end if;
       else
          raise FinDeListe;

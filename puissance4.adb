@@ -29,7 +29,7 @@ package body Puissance4 is
 	--On appelle une fonction regardant 
 	I:=E.dernier_coup.Coordonnees(1);
 	J:=E.dernier_coup.Coordonnees(2);
-            if E.G(I,J)=Valeur_Jo then
+            if (I/=-1 and then E.G(I,J)=Valeur_Jo) then
                if Alignement(E.G,I,J,I-1,J-1,1) or
                  Alignement(E.G,I,J,I-1,J,1) or
                  Alignement(E.G,I,J,I-1,J+1,1) or

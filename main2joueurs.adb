@@ -12,7 +12,7 @@ use Participant;
 
 procedure Main2Joueurs is
    
-   package MyPuissance4 is new Puissance4(4,4,3);
+   package MyPuissance4 is new Puissance4(5,5,3);
    Nom1, Nom2: String(1..20);
    Last1,Last2: Natural;
    begin

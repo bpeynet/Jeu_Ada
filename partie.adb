@@ -17,7 +17,6 @@ package body Partie is
    procedure Joue_Partie(E : in out Etat; J : in Joueur) is
    begin
       Affiche_Jeu(E);
-      Skip_Line;
       if Est_Nul(E) then
          Put_Line("Match nul");
       elsif Est_Gagnant(E,Adversaire(J)) then
@@ -31,5 +30,6 @@ package body Partie is
          E:=Etat_Suivant(E,Coup_Joueur2(E));
 		 Joue_Partie(E,Adversaire(J));
       end if;
+	Skip_Line;
    end Joue_Partie;
 end Partie;

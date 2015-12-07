@@ -22,10 +22,13 @@ procedure Main1Joueur is
                                               Put     => MyPuissance4.Affiche_Coup);
    use Liste_Coups;
 
+
+   --fonction retournant une liste de coups possibles pour un joueur donné.
    function Coups_Possibles(E : MyPuissance4.Etat; J : Joueur) return Liste_Coups.Liste is
       Possibilites: Liste_Coups.Liste;
       C: MyPuissance4.Coup;
       K: Integer;
+
    begin
       Possibilites:=Creer_Liste;
       C.Qui:=J;
@@ -42,6 +45,7 @@ procedure Main1Joueur is
       return Possibilites;
    end Coups_Possibles;
 
+--Permet de savoir si un jeton est dans le cadre de jeu ou non
    function Est_Dedans(G: access Grille; X: Integer; Y: Integer) return Boolean is
    begin
       if X>=G'First(1) and X<=G'Last(1) and Y>=G'First(2) and Y<=G'Last(2) then
@@ -50,6 +54,7 @@ procedure Main1Joueur is
       end if;
    end Est_Dedans;
 
+    --Calcul pour un jeton un score selon si il est bien situé ou non
    function Voisinage(G: access Grille; X: Integer; Y: Integer) return Integer is
       Total: Integer;
    begin
@@ -92,6 +97,7 @@ procedure Main1Joueur is
       return Total;
    end Voisinage;
 
+--Evalue la situation statique (=actuelle) du jeu
    function Eval(E : Etat) return Integer is
       Avantage_Ordi, Avantage_Joueur: Integer;
    begin
@@ -131,6 +137,7 @@ begin
                                    Eval            => Eval,
                                    Profondeur      => 3,
                                    JoueurMoteur    => Joueur2);
+
       -- definition d'une partie entre L'ordinateur en Joueur 1 et un humain en Joueur 2
       package MyPartie is new Partie(MyPuissance4.Etat,
                                      MyPuissance4.Coup,
@@ -157,5 +164,6 @@ begin
 
       Joue_Partie(P, Joueur2);
    end;
+
    Get_Line(Nom1,Last1);
 end Main1Joueur;

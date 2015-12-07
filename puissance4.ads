@@ -26,6 +26,7 @@ package Puissance4 is
    function Jouer(E : Etat; C : Coup) return Etat;
    -- Indique si l'etat courant est gagnant pour le joueur J
    function Est_Gagnant(E : in Etat; Jo : in Joueur) return Boolean;
+   --fonction permettant de connaitre le nombre de jeton aligné pour un joueur donné à partir d'une position donnée
    function Alignement(G: access Grille; I: Integer; J: Integer; SI: Integer; SJ: Integer; Compteur: Integer) return Boolean;
    -- Indique si l'etat courant est un status quo (match nul)
    function Est_Nul(E : Etat) return Boolean;
@@ -40,5 +41,7 @@ package Puissance4 is
 
    procedure Initialiser(E: in out Etat);
    procedure Put(E: in Element);
+
+
 
 end Puissance4;

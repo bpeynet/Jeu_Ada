@@ -2,6 +2,7 @@ with Ada.Unchecked_Deallocation;
 with Ada.Text_IO; use Ada.Text_IO;
 
 package body Liste_Generique is
+
    type Cellule is record
       Val: Element;
       Suiv: Liste;
@@ -10,8 +11,6 @@ package body Liste_Generique is
    type Iterateur_Interne is record
       Adresse: Liste;
       Suivant: Liste;
-      --Precedent: Liste;
-      --NB: Integer;
    end record;
    ----------------------------------------------------------
 
@@ -19,6 +18,8 @@ package body Liste_Generique is
    procedure Liberer_Iterateur is new Ada.Unchecked_Deallocation (Iterateur_Interne, Iterateur);
 
    ---------------------------------------------------------
+
+   -- Affichage de la liste, dans l'ordre de parcours
    procedure Affiche_Liste (L : in Liste) is
       Curseur: Liste;
    begin
@@ -30,6 +31,7 @@ package body Liste_Generique is
       end loop;
    end Affiche_Liste;
 
+    -- Insertion d'un element V en tete de liste
    procedure Insere_Tete (V : in Element; L : in out Liste) is
       N: Liste;
    begin
@@ -37,6 +39,7 @@ package body Liste_Generique is
       L:=N;
    end Insere_Tete;
 
+ -- Vide la liste et libere toute la memoire utilisee
    procedure Libere_Liste(L : in out Liste) is
       Curseur, Tmp: Liste;
    begin
@@ -48,11 +51,13 @@ package body Liste_Generique is
       end loop;
    end Libere_Liste;
 
+    -- Creation de la liste vide
    function Creer_Liste return Liste is
    begin
       return null;
    end Creer_Liste;
 
+    -- Cree un nouvel iterateur 
    function Creer_Iterateur (L : Liste) return Iterateur is
    begin
       if L/=null then return new Iterateur_Interne'(null,L);
@@ -60,11 +65,13 @@ package body Liste_Generique is
       end if;
    end Creer_Iterateur;
 
+    -- Liberation d'un iterateur
    procedure Libere_Iterateur(It : in out Iterateur) is
    begin
       Liberer_Iterateur(It);
    end Libere_Iterateur;
 
+    -- Avance d'une case dans la liste
    procedure Suivant(It : in out Iterateur) is
    begin
       if A_Suivant(It) then
@@ -75,6 +82,7 @@ package body Liste_Generique is
       end if;
    end Suivant;
 
+   -- Retourne l'element courant
    function Element_Courant(It : Iterateur) return Element is
    begin
       if It/=null then
@@ -92,6 +100,7 @@ package body Liste_Generique is
       end if;
    end Element_Courant;
 
+   -- Verifie s'il reste un element a parcourir
    function A_Suivant(It : Iterateur) return Boolean is
    begin
       if It.Suivant/=null then return true;
